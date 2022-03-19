@@ -13,6 +13,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.springframework.data.rest.core.annotation.RestResource;
+
 
 @Entity
 @Table(name="artist")
@@ -28,6 +30,7 @@ public class Artist {
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="artist_detail_id")
+	@RestResource(path = "theDetails", rel = "artistDetail")
 	private ArtistDetail artistDetail;
 	
 	@OneToMany(mappedBy = "artist", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
